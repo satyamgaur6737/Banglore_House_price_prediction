@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0*xx)j!g(i-3_rj(xf*)m@vwej9y9$7zz_w93tbm2e2q=^o!1l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["banglore-house-price-prediction-lhzm.onrender.com"]
 
 
 # Application definition
