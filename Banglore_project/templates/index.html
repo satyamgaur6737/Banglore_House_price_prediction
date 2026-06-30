@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangalore House Price Predictor</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 flex justify-center items-center min-h-screen">
+
+<div class="bg-white w-full max-w-5xl rounded-xl shadow-2xl p-8">
+
+    <h1 class="text-4xl font-bold text-center text-gray-800">
+        Bangalore House Price Predictor
+    </h1>
+
+    <p class="text-center text-gray-500 mt-3 mb-8">
+        Want to predict the price of a new house in Bangalore? Fill the details below.
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- Location -->
+            <div>
+                <label class="font-semibold block mb-2">
+                    Select Location
+                </label>
+
+                <select
+                    name="location"
+                    class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+                    {% for location in locations %}
+                    <option value="{{ location }}">
+                        {{ location }}
+                    </option>
+                    {% endfor %}
+
+                </select>
+            </div>
+
+            <!-- BHK -->
+            <div>
+                <label class="font-semibold block mb-2">
+                    Enter BHK
+                </label>
+
+                <input
+                    type="number"
+                    name="bhk"
+                    required
+                    placeholder="4"
+                    class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- Bathroom -->
+            <div>
+                <label class="font-semibold block mb-2">
+                    Enter Bathrooms
+                </label>
+
+                <input
+                    type="number"
+                    name="bath"
+                    required
+                    placeholder="3"
+                    class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- Square Feet -->
+            <div>
+                <label class="font-semibold block mb-2">
+                    Total Square Feet
+                </label>
+
+                <input
+                    type="number"
+                    name="sqft"
+                    step="0.1"
+                    required
+                    placeholder="2000"
+                    class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-500">
+            </div>
+
+        </div>
+
+        <button
+            class="mt-8 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition">
+
+            Predict Price
+
+        </button>
+
+    </form>
+
+    {% if display_price %}
+<div class="mt-10 text-center">
+    <h2 class="text-2xl font-bold text-green-700">
+        Predicted House Price
+    </h2>
+
+    <p class="text-3xl font-bold mt-4">
+        {{ display_price }}
+    </p>
+</div>
+{% endif %}
+
+</div>
+
+</body>
+</html>
